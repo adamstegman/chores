@@ -90,13 +90,21 @@ class _ChoresState extends State<Chores> {
         if (index >= _chores.length) {
           _chores.addAll(generateChores().take(10));
         }
+        // TODO: skip if completed
         return _buildRow(_chores[index]);
       },
     );
   }
 
   Widget _buildRow(Chore chore) {
-    return ListTile(title: Text(chore.name, style: _biggerFont));
+    return ListTile(
+      title: Text(chore.name, style: _biggerFont),
+      trailing: Icon(
+        chore.completed ? Icons.check : Icons.check_box,
+        color: chore.completed ? Colors.green : null,
+      ),
+      onTap: () => setState(() => chore.completed = !chore.completed),
+    );
   }
 
   // TODO: actual storage
@@ -106,7 +114,7 @@ class _ChoresState extends State<Chores> {
     // We're in a sync* function, so `while (true)` is okay.
     while (true) {
       index++;
-      yield Chore('clean $index');
+      yield Chore(name: 'clean $index');
     }
   }
 }
