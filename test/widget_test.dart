@@ -11,20 +11,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:chores/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Chores can be completed', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(ChoresApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Verify that chores are listed
+    final chore = find.byType(ListTile).first;
+    final complete = find.descendant(of: chore, matching: find.byIcon(Icons.check_circle_outline));
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Tap the complete icon and trigger a frame.
+    await tester.tap(complete);
     await tester.pump();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    // Verify that our checkmark has toggled.
+    final completed = find.descendant(of: chore, matching: find.byIcon(Icons.done));
+    expect(completed, findsOneWidget);
   });
 }

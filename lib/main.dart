@@ -76,7 +76,7 @@ class _ChoreListViewState extends State<ChoreListView> {
     return ListTile(
       title: Text(chore.name, style: _biggerFont),
       trailing: Icon(
-        chore.completed ? Icons.check : Icons.check_box,
+        chore.completed ? Icons.done : Icons.check_circle_outline,
         color: chore.completed ? Colors.green : null,
       ),
       onTap: () => setState(() => chore.completed = !chore.completed),
