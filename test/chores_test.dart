@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:chores/views/app.dart';
+import 'package:chores/core/app.dart';
 
 void main() {
   testWidgets('Chores can be completed', (WidgetTester tester) async {
@@ -18,13 +18,23 @@ void main() {
     // Verify that chores are listed
     final chore = find.byType(ListTile).first;
     final complete = find.descendant(of: chore, matching: find.byIcon(Icons.check_circle_outline));
+    expect(complete, findsOneWidget);
 
     // Tap the complete icon and trigger a frame.
     await tester.tap(complete);
     await tester.pump();
 
-    // Verify that our checkmark has toggled.
+    // Verify that our chore is completed.
     final completed = find.descendant(of: chore, matching: find.byIcon(Icons.done));
     expect(completed, findsOneWidget);
+    expect(complete, findsNothing);
+
+    // Tap the complete icon and trigger a frame.
+    await tester.tap(completed);
+    await tester.pump();
+
+    // Verify that our chore is not completed anymore.
+    expect(complete, findsOneWidget);
+    expect(completed, findsNothing);
   });
 }

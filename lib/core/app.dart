@@ -1,19 +1,22 @@
+import 'package:chores/core/home_page.dart';
 import 'package:flutter/material.dart';
 
-import '../constants.dart';
-import 'chores_home.dart';
+import 'constants.dart';
 
 class ChoresApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: APP_NAME,
       theme: ThemeData(
-        // This is the theme of your application.
+        brightness: Brightness.light,
         primarySwatch: Colors.teal,
       ),
-      home: ChoresHome(),
+      darkTheme: ThemeData(
+        brightness: Brightness.dark,
+        primarySwatch: Colors.teal,
+      ),
+      home: HomePage(),
     );
   }
 }
