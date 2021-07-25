@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../core/callbacks.dart';
 import 'chore.dart';
 
-typedef ToggleAtIndex = void Function(int index);
-
 class ChoreList extends StatelessWidget {
-  final ToggleAtIndex toggleChoreCompleted;
   final Iterable<Chore> chores;
+  final ToggleAtIndex toggleChoreCompleted;
   final _biggerFont = const TextStyle(fontSize: 18.0);
 
   ChoreList({Key? key, required this.chores, required this.toggleChoreCompleted}) : super(key: key);
@@ -15,6 +14,7 @@ class ChoreList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: const EdgeInsets.all(16.0),
+      itemCount: chores.length * 2,
       itemBuilder: (context, i) {
         if (i.isOdd) return const Divider();
 

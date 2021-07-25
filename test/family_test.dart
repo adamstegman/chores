@@ -8,12 +8,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:chores/chores/chore_provider.dart';
 import 'package:chores/core/app.dart';
 
 void main() {
   testWidgets('Family can be opened', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(ChoresApp());
+    final choreProvider = ChoreProvider();
+    await tester.pumpWidget(ChoresApp(choreProvider));
 
     // Verify that the navigation bar is visible.
     final nav = find.byType(BottomNavigationBar).first;

@@ -1,9 +1,14 @@
-import 'package:chores/core/home_page.dart';
+import 'package:chores/chores/chore_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'home_page.dart';
 
 class ChoresApp extends StatelessWidget {
+  final ChoreProvider choreProvider;
+
+  ChoresApp(this.choreProvider);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +21,7 @@ class ChoresApp extends StatelessWidget {
         brightness: Brightness.dark,
         primarySwatch: Colors.teal,
       ),
-      home: HomePage(),
+      home: HomePage(choreProvider: choreProvider),
     );
   }
 }
