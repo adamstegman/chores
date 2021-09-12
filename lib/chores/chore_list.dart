@@ -27,6 +27,7 @@ class ChoreList extends StatelessWidget {
   Widget _buildRow(int index, {required BuildContext context}) {
     final chore = _getChore(index);
     return ListTile(
+      key: Key('chore_$index'),
       title: Text(chore.name, style: _biggerFont),
       leading: Icon(
         chore.completed ? Icons.done : Icons.check_circle_outline,
