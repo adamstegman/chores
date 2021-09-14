@@ -1,3 +1,4 @@
+import 'package:chores/chores/chore_list_row.dart';
 import 'package:flutter/material.dart';
 
 import '../core/callbacks.dart';
@@ -6,7 +7,6 @@ import 'chore.dart';
 class ChoreList extends StatelessWidget {
   final Iterable<Chore> chores;
   final ToggleAtIndex toggleChoreCompleted;
-  final _biggerFont = const TextStyle(fontSize: 18.0);
 
   ChoreList({Key? key, required this.chores, required this.toggleChoreCompleted}) : super(key: key);
 
@@ -19,26 +19,13 @@ class ChoreList extends StatelessWidget {
         if (i.isOdd) return const Divider();
 
         final index = i ~/ 2;
-        return _buildRow(index, context: context);
+        final chore = _getChore(index);
+        return ChoreListRow(
+          chore: chore,
+          index: index,
+          toggleChoreCompleted: toggleChoreCompleted,
+        );
       },
-    );
-  }
-
-  Widget _buildRow(int index, {required BuildContext context}) {
-    final chore = _getChore(index);
-    return ListTile(
-      key: Key('chore_$index'),
-      title: Text(chore.name, style: _biggerFont),
-      leading: Semantics(
-        label: 'Completed state',
-        hint: chore.completed ? 'Press to uncomplete' : 'Press to complete',
-        value: chore.completed ? 'Complete' : 'Not complete',
-        child: Icon(
-          chore.completed ? Icons.done : Icons.check_circle_outline,
-          color: chore.completed ? Theme.of(context).accentColor : null,
-        ),
-      ),
-      onTap: () => toggleChoreCompleted(index),
     );
   }
 
