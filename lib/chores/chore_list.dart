@@ -29,9 +29,14 @@ class ChoreList extends StatelessWidget {
     return ListTile(
       key: Key('chore_$index'),
       title: Text(chore.name, style: _biggerFont),
-      leading: Icon(
-        chore.completed ? Icons.done : Icons.check_circle_outline,
-        color: chore.completed ? Theme.of(context).accentColor : null,
+      leading: Semantics(
+        label: 'Completed state',
+        hint: chore.completed ? 'Press to uncomplete' : 'Press to complete',
+        value: chore.completed ? 'Complete' : 'Not complete',
+        child: Icon(
+          chore.completed ? Icons.done : Icons.check_circle_outline,
+          color: chore.completed ? Theme.of(context).accentColor : null,
+        ),
       ),
       onTap: () => toggleChoreCompleted(index),
     );

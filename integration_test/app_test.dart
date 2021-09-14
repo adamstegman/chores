@@ -14,25 +14,26 @@ void main() {
 
       // Verify that chores are listed
       final chore = find.byKey(Key('chore_1'));
-      final complete = find.descendant(of: chore, matching: find.byIcon(Icons.check_circle_outline));
-      expect(complete, findsOneWidget);
+      expect(chore, findsOneWidget);
+      final completed = find.bySemanticsLabel(RegExp('Completed state')).first;
+      expect(completed, findsOneWidget);
+      expect(tester.getSemantics(completed).value, 'Not complete');
 
       // Tap the complete icon and trigger a frame.
-      await tester.tap(complete);
+      await tester.tap(completed);
       await tester.pumpAndSettle();
 
       // Verify that our chore is completed.
-      final completed = find.descendant(of: chore, matching: find.byIcon(Icons.done));
       expect(completed, findsOneWidget);
-      expect(complete, findsNothing);
+      expect(tester.getSemantics(completed).value, 'Complete');
 
       // Tap the complete icon and trigger a frame.
       await tester.tap(completed);
       await tester.pumpAndSettle();
 
       // Verify that our chore is not completed anymore.
-      expect(complete, findsOneWidget);
-      expect(completed, findsNothing);
+      expect(completed, findsOneWidget);
+      expect(tester.getSemantics(completed).value, 'Not complete');
     });
   });
 }

@@ -1,10 +1,3 @@
-// This is a basic Flutter widget test.
-//
-// To perform an interaction with a widget in your test, use the WidgetTester
-// utility that Flutter provides. For example, you can send tap and scroll
-// gestures. You can also use WidgetTester to find child widgets in the widget
-// tree, read text, and verify that the values of widget properties are correct.
-
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -19,24 +12,25 @@ void main() {
 
     // Verify that chores are listed
     final chore = find.byType(ListTile).first;
-    final complete = find.descendant(of: chore, matching: find.byIcon(Icons.check_circle_outline));
-    expect(complete, findsOneWidget);
+    expect(chore, findsOneWidget);
+    final completed = find.bySemanticsLabel(RegExp('Completed state')).first;
+    expect(completed, findsOneWidget);
+    expect(tester.getSemantics(completed).value, 'Not complete');
 
     // Tap the complete icon and trigger a frame.
-    await tester.tap(complete);
+    await tester.tap(completed);
     await tester.pump();
 
     // Verify that our chore is completed.
-    final completed = find.descendant(of: chore, matching: find.byIcon(Icons.done));
     expect(completed, findsOneWidget);
-    expect(complete, findsNothing);
+    expect(tester.getSemantics(completed).value, 'Complete');
 
     // Tap the complete icon and trigger a frame.
     await tester.tap(completed);
     await tester.pump();
 
     // Verify that our chore is not completed anymore.
-    expect(complete, findsOneWidget);
-    expect(completed, findsNothing);
+    expect(completed, findsOneWidget);
+    expect(tester.getSemantics(completed).value, 'Not complete');
   });
 }
