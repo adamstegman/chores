@@ -4,9 +4,9 @@
   "description": "A family chore tracker",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/app.jsx --bundle --outfile=public/index.js --sourcemap --target=es2020",
-    "build-prod": "esbuild src/app.jsx --bundle --outfile=public/index.js --sourcemap --target=es2020 --minify",
-    "start": "esbuild src/app.jsx --bundle --outfile=public/index.js --sourcemap --target=es2020 --servedir=public",
+    "build": "esbuild src/app.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020",
+    "build-prod": "esbuild src/app.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020 --minify",
+    "start": "esbuild src/app.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020 --servedir=public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/adamstegman/chores#readme",
   "devDependencies": {
+    "@types/react": "^17.0.37",
+    "@types/react-dom": "^17.0.11",
     "esbuild": "^0.13.15"
   },
   "dependencies": {
