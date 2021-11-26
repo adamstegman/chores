@@ -4,9 +4,9 @@
   "description": "A family chore tracker",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/app.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020",
-    "build-prod": "esbuild src/app.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020 --minify",
-    "start": "esbuild src/app.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020 --servedir=public",
+    "bundle": "esbuild src/index.tsx --bundle --outfile=public/index.js --sourcemap --target=es2020",
+    "build": "npm run bundle -- --minify",
+    "start": "npm run bundle -- --servedir=public",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
