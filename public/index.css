@@ -41,8 +41,18 @@ li {
   align-items: center;
 
   border-bottom: 1px solid #aaa;
-  min-height: 44px;
-  padding: 0 1rem;
+}
+li.activateable {
+  cursor: pointer;
+}
+/* The list item should be tappable; 44px high */
+li > * {
+  line-height: 44px;
+  height: 44px;
+}
+/* Leading item should be tappable; 44px wide */
+li > :first-child:not(:last-child) {
+  width: 44px;
 }
 
 /*
@@ -92,6 +102,13 @@ header {
 h1 {
   font-weight: normal;
   font-size: 24px;
+}
+
+/*
+  Chore list styles
+*/
+li > .leading {
+  text-align: center;
 }
 
 /*

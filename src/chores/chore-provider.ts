@@ -12,6 +12,10 @@ export class ChoreProvider {
 
   // TODO: Observable<Chore> so consumers can .take(20) or whatever
   getChores(): Chore[] {
-    return this.chores;
+    return this.chores.slice(0);
+  }
+
+  toggleChoreCompleted(index: number) {
+    this.chores[index].completed = !this.chores[index].completed;
   }
 }
