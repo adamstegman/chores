@@ -3,7 +3,8 @@ import { useState } from 'react';
 
 import { ListItem } from '../list-view/list-item';
 import { ListView } from '../list-view/list-view';
-import { ChoreCompletedIndicator } from './chore-completed-indicator';
+import { ChoreCompleteIndicator } from './chore-complete-indicator';
+import { ChoreIncompleteIndicator } from './chore-incomplete-indicator';
 import { ChoreProvider } from './chore-provider';
 
 export const ChoreList = ({ choreProvider }: { choreProvider: ChoreProvider }) => {
@@ -12,7 +13,7 @@ export const ChoreList = ({ choreProvider }: { choreProvider: ChoreProvider }) =
   const items = chores.map((chore, i) => new ListItem({
     key: chore.id,
     name: chore.name,
-    leading: <ChoreCompletedIndicator completed={chore.completed} />,
+    leading: chore.completed ? <ChoreCompleteIndicator /> : <ChoreIncompleteIndicator />,
     onActivate: () => {
       console.log('IN', i);
       choreProvider.toggleChoreCompleted(i);

@@ -59,7 +59,7 @@ li > :first-child:not(:last-child) {
   Overall styles
 */
 body {
-  /* https://material.io/design/color/the-color-system.html */
+  /* Teal 500: https://material.io/design/color/the-color-system.html */
   --background-color: #009688;
   /* https://css-tricks.com/snippets/css/system-font-stack/ */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
@@ -108,7 +108,13 @@ h1 {
   Chore list styles
 */
 li > .leading {
-  text-align: center;
+  /* Teal 500: https://material.io/design/color/the-color-system.html */
+  /* https://stackoverflow.com/a/53336754/155937 */
+  filter: invert(50%) sepia(62%) saturate(6786%) hue-rotate(154deg) brightness(94%) contrast(104%);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /*
