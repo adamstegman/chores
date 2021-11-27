@@ -1,15 +1,13 @@
-import * as React from 'react'
+import * as React from 'react';
 
-import { ChoreProvider } from '../chores/chore-provider';
-import { Body} from './body';
-import { Footer} from './footer';
-import { Header } from './header';
+import { ChoresContainer } from '../chores/chores-container';
+import { Footer } from './footer';
 
-const choreProvider = new ChoreProvider();
-export const App = () => (
-  <>
-    <Header />
-    <Body choreProvider={choreProvider} />
-    <Footer />
-  </>
-);
+export const App = () => {
+  return (
+    <>
+      <ChoresContainer />
+      <Footer />
+    </>
+  );
+};

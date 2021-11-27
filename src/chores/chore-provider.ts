@@ -6,10 +6,14 @@ export class ChoreProvider {
     { name: 'Chore 1', id: 'Chore 1', completed: false },
     { name: 'Chore 2', id: 'Chore 2', completed: false },
     { name: 'Chore 3', id: 'Chore 3', completed: false },
-    { name: 'Chore 4', id: 'Chore 4', completed: false },
-    { name: 'Chore 5', id: 'Chore 5', completed: false },
-    { name: 'Chore 6', id: 'Chore 6', completed: false },
   ];
+
+  addChore(chore: Chore): Promise<void> {
+    return new Promise(resolve => {
+      this.chores.push({ ...chore });
+      resolve();
+    });
+  }
 
   // TODO: Observable<Chore> so consumers can .take(20) or whatever
   getChores(): Chore[] {
