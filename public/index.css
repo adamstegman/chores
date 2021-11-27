@@ -41,9 +41,14 @@ li {
   align-items: center;
 
   border-bottom: 1px solid #aaa;
+  transition: background-color 0.5s ease-out;
 }
 li.activateable {
   cursor: pointer;
+}
+li.error {
+  /* Complementary 200: https://material.io/design/color/the-color-system.html */
+  background-color: #dc8e8e;
 }
 /* The list item should be tappable; 44px high */
 li > * {

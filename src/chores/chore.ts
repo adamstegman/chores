@@ -1,6 +1,6 @@
-export class Chore {
-  completed = false;
-  id = this.name;
-
-  constructor(public name: string) {}
+export type Chore = {
+  completed: boolean;
+  id: string;
+  name: string;
+  error?: any;
 }
