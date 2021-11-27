@@ -1,15 +1,10 @@
 import * as React from 'react'
-import { Dispatch } from 'react';
+import { Link } from 'react-router-dom';
 
-import { ChoreAction, createChore } from './reducer';
-
-export const AddChore = ({ dispatch }: { dispatch: Dispatch<ChoreAction> }) => {
-  const num = Math.floor(Math.random() * 1000);
-  const name = `New chore ${num}`;
-  const chore = { name, id: name, completed: false };
+export const AddChore = () => {
   return (
-    <button onClick={() => dispatch(createChore(chore))}>
+    <Link to="/chores/new">
       +
-    </button>
-  );
+    </Link>
+  )
 };
