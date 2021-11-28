@@ -168,7 +168,9 @@ input[type=submit] {
   /* Teal 200: https://material.io/design/color/the-color-system.html */
   background: #80CBC4;
   border: none;
+  border-radius: 0;
   box-shadow: none;
+  -webkit-appearance: none;
 }
 form a {
   place-self: center;
