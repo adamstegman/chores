@@ -16,8 +16,10 @@ export class ChoreProvider {
   }
 
   // TODO: Observable<Chore> so consumers can .take(20) or whatever
-  getChores(): Chore[] {
-    return this.chores.map(chore => ({ ...chore }));
+  getChores(): Promise<Chore[]> {
+    return new Promise(resolve => {
+      resolve(this.chores.map(chore => ({ ...chore })));
+    })
   }
 
   toggleChoreCompleted(chore: Chore): Promise<void> {
