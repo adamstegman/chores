@@ -5,23 +5,23 @@ import { Route, Routes } from 'react-router-dom';
 import { ChoreProvider } from './chore-provider';
 import { ChoresBody } from './chores-body';
 import { ChoresHeader } from './chores-header';
+import { EditChore } from './edit-chore';
 import { NewChore } from './new-chore';
-import { fetchChoresFailure, fetchChoresSuccess, initialState, reducer, dispatchMiddleware } from './reducer';
+import { fetchChores, initialState, reducer, dispatchMiddleware } from './reducer';
 
 const choreProvider = new ChoreProvider();
 export const ChoresContainer = () => {
   const [state, dispatchLocalAction] = useReducer(reducer, initialState);
+  const dispatchRemoteAction = dispatchMiddleware(dispatchLocalAction, { choreProvider });
+
   const { chores } = state;
   useEffect(() => {
-    if (chores.length === 0) {
-      choreProvider.getChores().then(chores => {
-        dispatchLocalAction(fetchChoresSuccess(chores));
-      }, error => {
-        dispatchLocalAction(fetchChoresFailure(error));
-      });
+    if (chores.length > 0) {
+      return;
     }
+
+    dispatchRemoteAction(fetchChores());
   });
-  const dispatchRemoteAction = dispatchMiddleware(dispatchLocalAction, { choreProvider });
 
   return (
     <>
@@ -29,6 +29,7 @@ export const ChoresContainer = () => {
       <Routes>
         <Route index element={<ChoresBody chores={chores} dispatch={dispatchRemoteAction} />} />
         <Route path="new" element={<NewChore dispatch={dispatchRemoteAction} />} />
+        <Route path=":choreId" element={<EditChore chores={chores} dispatch={dispatchRemoteAction} />} />
       </Routes>
     </>
   );

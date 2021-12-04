@@ -43,9 +43,6 @@ li {
   border-bottom: 1px solid var(--separator-color);
   transition: background-color 0.5s ease-out;
 }
-li.activateable {
-  cursor: pointer;
-}
 li.error {
   /* Complementary 200: https://material.io/design/color/the-color-system.html */
   background-color: #dc8e8e;
@@ -76,6 +73,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 input[type=submit] {
   cursor: pointer;
@@ -134,14 +136,26 @@ header > a {
   Chores styles
 */
 /* Chore list */
-li > .leading {
-  /* Teal 500: https://material.io/design/color/the-color-system.html */
-  /* https://stackoverflow.com/a/53336754/155937 */
-  filter: invert(50%) sepia(62%) saturate(6786%) hue-rotate(154deg) brightness(94%) contrast(104%);
-
+.leading {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.leading > img {
+  /* Teal 500: https://material.io/design/color/the-color-system.html */
+  /* https://stackoverflow.com/a/53336754/155937 */
+  filter: invert(50%) sepia(62%) saturate(6786%) hue-rotate(154deg) brightness(94%) contrast(104%);
+}
+.list-item-body {
+  padding: 0 1rem;
+  text-align: start;
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+.list-item-body > :last-child {
+  color: var(--background-color);
 }
 /* New chore */
 form {

@@ -1,11 +1,8 @@
-import * as React from 'react';
-
-type EventHandler = () => void;
+import { ReactNode } from 'react';
 
 export type ListItem = {
   key: string;
-  name: string;
-  leading?: React.ReactNode;
-  onActivate?: EventHandler;
+  body: ReactNode;
+  leading?: ReactNode;
   error?: any;
 }

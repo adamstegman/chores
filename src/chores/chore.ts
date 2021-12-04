@@ -4,3 +4,9 @@ export type Chore = {
   name: string;
   error?: any;
 }
+
+export const emptyChore = {
+  id: '',
+  name: '',
+  completed: false,
+};
